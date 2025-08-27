@@ -1,14 +1,16 @@
+
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import utils.*;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class Main extends Application {
 
@@ -17,23 +19,24 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        if(!DeviceIdentifier.doesExist()){
-            DeviceIdentifier.registerDevice();
+        if(!utils.DeviceIdentifier.doesExist()){
+            utils.DeviceIdentifier.registerDevice();
         }
         setUserId();
-        System.out.println(userId);
 
-        StackPane root = new StackPane();
-        Scene scene = new Scene(root, 400, 300);
-        primaryStage.setTitle("JavaFX Test");
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/MainPage.fxml")));
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Invoice Generator");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
+
     }
 
     private static void setUserId() throws Exception{
-        String id = DeviceIdentifier.getDeviceUniqueId();
+        String id = utils.DeviceIdentifier.getDeviceUniqueId();
         String query = "SELECT id FROM users WHERE unique_id = ?";
-        Connection connection = DBConnect.getConnection();
+        Connection connection = utils.DBConnect.getConnection();
         try(PreparedStatement statement = connection.prepareStatement(query)){
             statement.setString(1, id);
             ResultSet set = statement.executeQuery();
