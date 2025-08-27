@@ -1,0 +1,25 @@
+#headerPane{
+    -fx-background-color :  #f6f7f6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5,0,3,3);
+    -fx-pref-height : 60;
+}
+
+#sidePane{
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5,0,3,3);
+}
+
+#saveButton{
+    -fx-pref-height : 40px;
+    -fx-pref-width : 90px;
+    -fx-background-color : #f6f7f6;
+    -fx-border-style : solid;
+    -fx-border-radius : 15%;
+
+}
+
+#sendButton{
+    -fx-pref-height : 40px;
+    -fx-pref-width : 100px;
+    -fx-background-color : #04385d;
+    -fx-background-radius : 15%;
+}

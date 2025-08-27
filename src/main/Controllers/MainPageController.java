@@ -3,6 +3,8 @@ package Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -11,11 +13,16 @@ import java.util.Objects;
 public class MainPageController {
 
     @FXML AnchorPane contentPane;
+    @FXML ImageView imageContainer;
 
     @FXML
     public void initialize(){
-
+        // Setting up the logo
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/logo.png")));
+        imageContainer.setImage(image);
     }
+
+
 
     private void loadContent(String fxmlPath) {
         try {

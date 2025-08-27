@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Invoice - A4 Optimized</title>
+    <style>
+      /* Base styles for print/PDF */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        font-size: 11px; /* Slightly smaller base font for better fit on A4 */
+        -webkit-print-color-adjust: exact; /* Ensure background colors and images are printed */
+        color-adjust: exact;
+      }
+
+      /* A4 page size with margins for PDF output */
+      @page {
+        size: A4; /* 210mm x 297mm */
+        margin: 20mm; /* Consistent margins on all sides */
+      }
+
+      .invoice-container {
+        width: 100%; /* Will be 100% of the printable area within the 20mm margins */
+        max-width: 170mm; /* 210mm (A4 width) - 2*20mm (margins) = 170mm */
+        margin: 0 auto; /* Center the content if the browser window is wider than A4 */
+        box-sizing: border-box;
+      }
+
+      /* Red horizontal lines at top and bottom - adapted for A4 margins */
+      .top-red-line,
+      .bottom-red-line {
+        background-color: #cc0000;
+        height: 10px;
+        width: calc(
+          100% + 40mm
+        ); /* Extends across the full page width including margins */
+        position: absolute;
+        left: -20mm; /* Adjusts to start from the page edge, accounting for the 20mm margin */
+      }
+      .top-red-line {
+        top: -20mm; /* Adjusts to stick to the top edge, accounting for the 20mm margin */
+      }
+      .bottom-red-line {
+        bottom: -20mm; /* Adjusts to stick to the bottom edge, accounting for the 20mm margin */
+      }
+      .relative-container {
+        position: relative;
+        padding-top: 5mm; /* Give some space below the top red line */
+        padding-bottom: 5mm; /* Give some space above the bottom red line */
+        min-height: calc(
+          297mm - 40mm - 20mm
+        ); /* A4 height - 2*margins - vertical padding, to ensure content push footer down */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Pushes footer to the bottom */
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 25px; /* Slightly adjusted margin */
+      }
+      .header-left {
+        width: 60%;
+      }
+      .header-right {
+        width: 35%;
+        text-align: right;
+      }
+      .header-right .logo {
+        width: 70px; /* Slightly smaller logo */
+        height: 70px;
+        background-color: #555;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-bottom: 8px; /* Slightly adjusted margin */
+        font-size: 14px;
+      }
+      h1 {
+        color: #cc0000;
+        font-size: 30px; /* Slightly smaller heading */
+        margin-bottom: 8px; /* Slightly adjusted margin */
+      }
+      .company-info p,
+      .bill-to p,
+      .project-details p {
+        margin: 1px 0; /* Tighter line spacing */
+        line-height: 1.4;
+      }
+      .section-title {
+        font-weight: bold;
+        margin-top: 15px; /* Slightly adjusted margin */
+        margin-bottom: 3px; /* Tighter spacing */
+      }
+      .address-block {
+        margin-bottom: 15px; /* Slightly adjusted margin */
+      }
+      .invoice-details {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 25px; /* Slightly adjusted margin */
+      }
+      .invoice-details > div {
+        width: 48%;
+      }
+      .invoice-details .right-align p {
+        text-align: right;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 25px; /* Slightly adjusted margin */
+        font-size: 10px; /* Smaller font for table content */
+      }
+      table th,
+      table td {
+        border: 1px solid #ddd;
+        padding: 6px; /* Smaller padding */
+        text-align: left;
+      }
+      table th {
+        background-color: #cc0000;
+        color: white;
+        font-weight: normal;
+      }
+      table td:nth-child(2) {
+        /* Description column */
+        width: 70%;
+      }
+      table td:last-child {
+        text-align: right;
+      }
+
+      .totals {
+        width: 40%;
+        float: right;
+        margin-bottom: 25px; /* Slightly adjusted margin */
+        font-size: 10px; /* Smaller font for totals */
+      }
+      .totals div {
+        display: flex;
+        justify-content: space-between;
+        padding: 1px 0; /* Tighter spacing */
+      }
+      .totals .balance-due {
+        font-weight: bold;
+        font-size: 14px; /* Slightly larger for emphasis */
+        border-top: 1px solid #ddd;
+        padding-top: 8px; /* Slightly adjusted padding */
+        margin-top: 8px; /* Slightly adjusted margin */
+      }
+      .footer {
+        clear: both;
+        border-top: 1px solid #ddd;
+        padding-top: 15px; /* Slightly adjusted padding */
+        margin-top: auto; /* Pushes footer to the bottom of the flex container */
+      }
+      .footer p {
+        margin: 1px 0; /* Tighter line spacing */
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="invoice-container">
+      <div class="relative-container">
+        <div class="top-red-line"></div>
+
+        <div class="content-wrapper">
+          <div class="header">
+            <div class="header-left">
+              <h1>INVOICE</h1>
+              <div class="company-info">
+                <p><strong>Your Company Name</strong></p>
+                <p>123 Street Address</p>
+                <p>City, State, Zip/Post Code</p>
+                <p>+1 (123) 456-7890</p>
+                <p>company@example.com</p>
+              </div>
+            </div>
+            <div class="header-right">
+              <div class="logo">LOGO</div>
+              <p><strong>DATE:</strong> 01/01/2024</p>
+              <p><strong>INVOICE NO.:</strong> INV-2024-001</p>
+              <p style="font-style: italic">(due on receipt)</p>
+            </div>
+          </div>
+
+          <div class="invoice-details">
+            <div>
+              <div class="section-title">BILL TO</div>
+              <div class="address-block">
+                <p><strong>Contact Name</strong></p>
+                <p>Client Company Name</p>
+                <p>Client Address, City, State, 12345</p>
+                <p>+1 (987) 654-3210</p>
+                <p>client@example.com</p>
+              </div>
+            </div>
+            <div>
+              <div class="section-title">PROJECT DETAILS</div>
+              <p>
+                <strong>Project Name / Dept:</strong> Website Redesign /
+                Marketing
+              </p>
+              <p>
+                <strong>Project Description:</strong> Complete overhaul of the
+                existing company website, including UI/UX improvements and
+                backend integration.
+              </p>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>DATE</th>
+                <th>DESCRIPTION</th>
+                <th>HOURS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01/01/2024</td>
+                <td>Initial Consultation and Requirements Gathering</td>
+                <td>5:00</td>
+              </tr>
+              <tr>
+                <td>01/05/2024</td>
+                <td>Wireframing and Mockup Design</td>
+                <td>12:30</td>
+              </tr>
+              <tr>
+                <td>01/10/2024</td>
+                <td>Front-end Development (HTML, CSS, JS)</td>
+                <td>25:45</td>
+              </tr>
+              <tr>
+                <td>01/20/2024</td>
+                <td>Back-end Development (API Integration, Database)</td>
+                <td>30:15</td>
+              </tr>
+              <tr>
+                <td>01/25/2024</td>
+                <td>Testing and Quality Assurance</td>
+                <td>8:00</td>
+              </tr>
+              <tr>
+                <td>01/30/2024</td>
+                <td>Client Review and Revisions</td>
+                <td>4:00</td>
+              </tr>
+              <tr>
+                <td>02/05/2024</td>
+                <td>Deployment and Launch</td>
+                <td>3:00</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="totals">
+            <div><span>TOTAL HOURS</span><span>88:30</span></div>
+            <div><span>HOURLY RATE</span><span>$75.00</span></div>
+            <div><span>DISCOUNT</span><span>$0.00</span></div>
+            <div><span>TOTAL PRE-TAX</span><span>$6,637.50</span></div>
+            <div><span>TAX RATE</span><span>0.00%</span></div>
+            <div><span>TOTAL TAX</span><span>$0.00</span></div>
+            <div class="balance-due">
+              <span>Balance Due</span><span>$6,637.50</span>
+            </div>
+          </div>
+        </div>
+        <!-- End of content-wrapper -->
+
+        <div class="footer">
+          <div class="section-title">Terms & Instructions</div>
+          <p>
+            <strong>Payment Instructions:</strong> Please make payments via bank
+            transfer to Account No: 123-456-789, SWIFT: BANKUS99.
+          </p>
+          <p>
+            <strong>Terms:</strong> All invoices are due upon receipt. A late
+            fee of 1.5% per month will be applied to overdue balances.
+          </p>
+        </div>
+
+        <div class="bottom-red-line"></div>
+      </div>
+    </div>
+  </body>
+</html>
