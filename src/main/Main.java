@@ -3,7 +3,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import services.Utils;
+import utils.DBConnect;
 
 
 import java.sql.Connection;
@@ -23,13 +26,14 @@ public class Main extends Application {
             utils.DeviceIdentifier.registerDevice();
         }
         setUserId();
-
+        primaryStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/logo.png"))));
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/MainPage.fxml")));
         Scene scene = new Scene(root);
         primaryStage.setTitle("Invoice Generator");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+        primaryStage.setResizable(false);
 
     }
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
@@ -12,34 +13,36 @@
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <javafx.version>21.0.2</javafx.version>
+        <poi.version>5.2.3</poi.version>
     </properties>
 
     <dependencies>
-        <!-- JavaFX dependencies -->
+        <!-- JavaFX Dependencies -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>21.0.2</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>21.0.2</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
-            <version>21.0.2</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
-            <version>21.0.2</version>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
-            <version>21.0.2</version>
+            <version>${javafx.version}</version>
         </dependency>
 
         <!-- PostgreSQL JDBC Driver -->
@@ -49,23 +52,94 @@
             <version>42.7.3</version>
         </dependency>
 
+        <!-- PDF Generation -->
         <dependency>
             <groupId>org.xhtmlrenderer</groupId>
             <artifactId>flying-saucer-pdf-openpdf</artifactId>
             <version>9.1.22</version>
         </dependency>
 
-        <!-- Jsoup (optional, for parsing HTML if needed) -->
+        <!-- HTML Parsing -->
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
             <version>1.16.1</version>
         </dependency>
 
+        <!-- Playwright for automation -->
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
             <artifactId>playwright</artifactId>
             <version>1.46.0</version>
+        </dependency>
+
+        <!-- Apache POI (Excel) -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-full</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlbeans</groupId>
+            <artifactId>xmlbeans</artifactId>
+            <version>5.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.26.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jodconverter</groupId>
+            <artifactId>jodconverter-local</artifactId>
+            <version>4.4.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.activation</groupId>
+            <artifactId>jakarta.activation</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>21.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>21.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.2.5</version>
+        </dependency>
+        <!--  Apache POI support for .xlsx files  -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.3</version>
         </dependency>
 
     </dependencies>
@@ -83,5 +157,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

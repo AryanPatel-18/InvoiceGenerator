@@ -1,6 +1,5 @@
 #headerPane{
-    -fx-background-color :  #f6f7f6;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5,0,3,3);
+    -fx-background-color :  #FBF6DB;
     -fx-pref-height : 60;
 }
 
@@ -9,17 +8,25 @@
 }
 
 #saveButton{
-    -fx-pref-height : 40px;
+    -fx-pref-height : 35px;
     -fx-pref-width : 90px;
-    -fx-background-color : #f6f7f6;
+    -fx-background-color : #faf6e1;
     -fx-border-style : solid;
-    -fx-border-radius : 15%;
+    -fx-border-radius : 5%;
 
 }
 
+#saveButton:disabled{
+    -fx-opacity : 1.0;
+}
+
 #sendButton{
-    -fx-pref-height : 40px;
+    -fx-pref-height : 35px;
     -fx-pref-width : 100px;
     -fx-background-color : #04385d;
-    -fx-background-radius : 15%;
+    -fx-background-radius : 5%;
+}
+
+#sendButton:disabled{
+    -fx-opacity : 1.0;
 }

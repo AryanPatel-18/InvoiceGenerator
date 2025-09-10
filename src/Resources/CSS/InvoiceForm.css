@@ -1,0 +1,132 @@
+#background{
+    -fx-background-color :  #faf6e1;
+}
+
+#toInputField{
+    -fx-background-color : white;
+    -fx-border-style : solid;
+    -fx-border-radius : 5;
+    -fx-background-radius : 5;
+    -fx-border-color : grey;
+    -fx-pref-width : 180px;
+    -fx-pref-height : 30px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5,0,3,3);
+}
+
+#emailField{
+    -fx-background-color : white;
+    -fx-border-style : solid;
+    -fx-border-radius : 5;
+    -fx-background-radius : 5;
+    -fx-border-color : grey;
+    -fx-pref-width : 180px;
+    -fx-pref-height : 30px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5,0,3,3);
+}
+
+#numberField{
+   -fx-background-color : white;
+   -fx-border-style : solid;
+   -fx-border-radius : 5;
+   -fx-background-radius : 5;
+   -fx-border-color : grey;
+   -fx-pref-width : 180px;
+   -fx-pref-height : 30px;
+   -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5,0,3,3);
+}
+
+#projectInputField{
+    -fx-background-color : white;
+    -fx-border-style : solid;
+    -fx-border-radius : 5;
+    -fx-background-radius : 5;
+    -fx-border-color : grey;
+    -fx-pref-width : 180px;
+    -fx-pref-height : 30px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5,0,3,3);
+}
+
+#companyNameField{
+    -fx-background-color : white;
+    -fx-border-style : solid;
+    -fx-border-radius : 5;
+    -fx-background-radius : 5;
+    -fx-border-color : grey;
+    -fx-pref-width : 180px;
+    -fx-pref-height : 30px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5,0,3,3);
+}
+
+#dateSelector{
+    -fx-background-color : transparent;
+    -fx-border-style : solid;
+    -fx-border-color : grey;
+    -fx-border-radius : 5;
+    -fx-pref-height : 30px
+}
+
+#dateSelector .arrow-button{
+    -fx-background-color : white;
+}
+
+#dateSelector .arrow-button .arrow{
+    -fx-background-color : #E2E3E2;
+    -fx-scale-x : 1.5;
+    -fx-scale-y : 1.5;
+}
+
+#inputArea{
+    -fx-background-color : white;
+    -fx-background-radius : 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5,0,3,3);
+}
+
+#informationBackground{
+    -fx-background-color : white;
+    -fx-background-radius : 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5,0,3,3);
+}
+
+#customArea{
+    -fx-background-color : white;
+    -fx-background-radius : 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5,0,3,3);
+}
+
+#stateBox{
+    -fx-background-color : white;
+    -fx-border-style : solid;
+    -fx-border-color : gray;
+    -fx-border-radius : 5;
+}
+
+#cityBox{
+    -fx-background-color : white;
+    -fx-border-style : solid;
+    -fx-border-color : gray;
+    -fx-border-radius : 5;
+}
+
+#companyField{
+    -fx-background-color : white;
+    -fx-border-style : solid;
+    -fx-border-color : gray;
+    -fx-border-radius : 5;
+    -fx-pref-height : 30px;
+}
+
+#updateButton{
+    -fx-pref-height : 30px;
+    -fx-pref-width : 150px;
+    -fx-background-color : #f6f7f6;
+    -fx-border-style : solid;
+    -fx-border-radius : 5;
+}
+
+#fetchButton{
+    -fx-pref-height : 30px;
+    -fx-pref-width : 150px;
+    -fx-background-color : #f6f7f6;
+    -fx-border-style : solid;
+    -fx-border-radius : 5;
+}

@@ -1,30 +1,47 @@
 package utils;
 
-import com.microsoft.playwright.*;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import Controllers.MainPageController;
+
+import java.io.File;
 
 public class PdfConverter {
-    public static void main(String[] args) {
-        try (Playwright playwright = Playwright.create()) {
-            Browser browser = playwright.chromium().launch();
-            Page page = browser.newPage();
-            Path path = Paths.get("C:/Users/aryan/OneDrive/Desktop/Testing/finalTry.pdf");
 
-            // Load your local HTML file
-            page.navigate("file:///D:\\InvoiceGenerator\\InvoiceGenerator\\src\\Resources\\Templates\\Invoice.html");
 
-            // Export directly to PDF
-            Page.PdfOptions options = new Page.PdfOptions()
-                    .setPath(path)
-                    .setFormat("A4")
-                    .setPrintBackground(true)
-                    .setPreferCSSPageSize(true);
+    public static void convertExcelToPdf() {
+        try {
+            String libreOfficePath = "\"C:\\Program Files\\LibreOffice\\program\\soffice.exe\"";
+            String command = String.format("%s --headless --convert-to pdf \"%s\" --outdir \"%s\"",
+                    libreOfficePath, ExcelPlaceholderReplacer.outputFilePath, getFolderPath(ExcelPlaceholderReplacer.outputFilePath));
 
-            page.pdf(options);
+            Process p = Runtime.getRuntime().exec(command);
+            p.waitFor();
+            deleteExcelFile(ExcelPlaceholderReplacer.outputFilePath);
+        } catch (Exception e) {
+            System.out.println("There was a problem in converting the excel file");
+        }
+    }
 
-            browser.close();
+    public static String getFolderPath(String fullFilePath) {
+        if (fullFilePath == null || fullFilePath.isEmpty()) {
+            return "";
+        }
+        File file = new File(fullFilePath);
+        String parentPath = file.getParent();
+        return parentPath != null ? parentPath : "";
+    }
+
+    public static void deleteExcelFile(String filePath) throws Exception{
+        File file = new File(filePath);
+
+        if (file.exists()) {
+            if (file.delete()) {
+                MainPageController.invoiceController.clearValues();
+            } else {
+                System.out.println("Failed to delete the file: " + filePath);
+            }
+        } else {
+            System.out.println("File does not exist: " + filePath);
         }
     }
 }

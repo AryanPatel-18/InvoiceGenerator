@@ -9,7 +9,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="798.0" style="-fx-pref-height: 600; -fx-pref-width: 800; -fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainPageController">
    <children>
       <AnchorPane fx:id="contentPane" layoutX="2.0" layoutY="60.0" prefHeight="538.0" prefWidth="794.0" stylesheets="@../CSS/MainPage.css" />
-      <AnchorPane fx:id="headerPane" prefHeight="200.0" prefWidth="800.0" stylesheets="@../CSS/MainPage.css">
+      <AnchorPane fx:id="headerPane" prefHeight="44.0" prefWidth="800.0" stylesheets="@../CSS/MainPage.css">
          <children>
             <Label layoutX="89.0" layoutY="21.0" text="Invoices |">
                <font>
@@ -21,12 +21,12 @@
                   <Font name="Microsoft JhengHei Bold" size="13.0" />
                </font>
             </Label>
-            <Button fx:id="saveButton" layoutX="576.0" layoutY="11.0" mnemonicParsing="false" stylesheets="@../CSS/MainPage.css" text="Save Draft">
+            <Button fx:id="saveButton" layoutX="576.0" layoutY="11.0" mnemonicParsing="false" onAction="#saveInvoice" stylesheets="@../CSS/MainPage.css" text="Save Draft">
                <font>
                   <Font name="Microsoft JhengHei Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="sendButton" layoutX="678.0" layoutY="11.0" mnemonicParsing="false" prefWidth="90.0" stylesheets="@../CSS/MainPage.css" text="Send Invoice" textFill="WHITE">
+            <Button fx:id="sendButton" layoutX="678.0" layoutY="11.0" mnemonicParsing="false" onAction="#sendInvoice" prefHeight="32.0" prefWidth="90.0" stylesheets="@../CSS/MainPage.css" text="Send Invoice" textFill="WHITE">
                <font>
                   <Font name="Microsoft JhengHei Bold" size="12.0" />
                </font>
