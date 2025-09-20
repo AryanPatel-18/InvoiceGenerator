@@ -1,12 +1,13 @@
 package utils;
 
+import Controllers.MainPageController;
 import models.Company;
 import models.Invoice;
-
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ public class ExcelPlaceholderReplacer {
     public static String outputFilePath;
 
     public static void replace(Invoice obj, Company comp) throws Exception {
+
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formattedDate = today.format(formatter);
@@ -31,8 +33,6 @@ public class ExcelPlaceholderReplacer {
 
         double totalPrice = amount1 + amount2 + amount3 + amount4 + amount5;
 
-        String invoiceNumber = generateInvoiceNumber();
-
         // Define placeholder replacements
         Map<String, String> replacements = new HashMap<>();
         replacements.put("{{Contact Name}}", safe(comp.getClient()));
@@ -41,8 +41,8 @@ public class ExcelPlaceholderReplacer {
         replacements.put("{{Phone}}", safe(comp.getPhoneNumber()));
         replacements.put("{{Email}}", safe(comp.getEmail()));
         replacements.put("{{Project Name}}", safe(obj.projectDetails));
-        replacements.put("{{DATE}}", formattedDate);
-        replacements.put("{{Invoice_number}}", invoiceNumber);
+        replacements.put("{{DATE}}", obj.formatedDate.trim().isEmpty()?formattedDate:obj.formatedDate);
+        replacements.put("{{Invoice_number}}", MainPageController.invoiceId);
 
         // Descriptions
         replacements.put("{{description1}}", safe(obj.description1));

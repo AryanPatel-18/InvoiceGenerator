@@ -31,6 +31,7 @@ public class MainPageController {
     @FXML private ImageView imageContainer;
     @FXML private Button saveButton;
     @FXML private Button sendButton;
+    public static String invoiceId;
 
     // The controller instance of InvoiceForm loaded via FXMLLoader
     public static InvoiceFormController invoiceController;
@@ -87,6 +88,7 @@ public class MainPageController {
         if (invoiceController == null) return;
         if (checkFields()) return;
         Company obj = invoiceController.getCompanyFromInput();
+        updateInvoiceData(Utils.getCompanyId(obj.getCompanyName()), invoiceController.getInvoiceObject().projectDetails);
 
         if(Utils.isValidEmail(obj.getEmail()) && Utils.isValidIndianNumber(obj.getPhoneNumber())){
             updateDatabase(obj);
@@ -130,7 +132,9 @@ public class MainPageController {
         FileChooser fileChooser = new FileChooser();
 
         // Set a default file name (optional)
-        fileChooser.setInitialFileName("new_invoice.xlsx");
+        invoiceId = ExcelPlaceholderReplacer.generateInvoiceNumber();
+        String fileName = "Invoice-" + invoiceId;
+        fileChooser.setInitialFileName(fileName + ".xlsx");
 
         // Set extension filters (optional)
         fileChooser.getExtensionFilters().addAll(
@@ -182,4 +186,16 @@ public class MainPageController {
         }
         return 0;
     }
+
+    private void updateInvoiceData(int company_id, String projectDetails) throws SQLException{
+        String query = "INSERT INTO invoices (company_id, created_by, project_details) VALUES (?,?,?)";
+        try (Connection connection = DBConnect.getConnection()){
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, company_id);
+            statement.setInt(2, Utils.getUserId());
+            statement.setString(3, projectDetails);
+            statement.executeUpdate();
+        }
+    }
+
 }

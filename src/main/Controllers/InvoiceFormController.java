@@ -3,19 +3,17 @@ package Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import models.Company;
 import models.Invoice;
 import services.Utils;
 import utils.DBConnect;
 
-
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -187,7 +185,8 @@ public class InvoiceFormController {
     }
 
     public Invoice getInvoiceObject() {
-        Invoice invoice = new Invoice(
+
+        return new Invoice(
                 projectInputField.getText() != null ? projectInputField.getText() : "",
 
                 description1.getText() != null ? description1.getText() : "",
@@ -206,10 +205,19 @@ public class InvoiceFormController {
                 parseIntSafe(quantity2.getText()),
                 parseIntSafe(quantity3.getText()),
                 parseIntSafe(quantity4.getText()),
-                parseIntSafe(quantity5.getText())
-        );
+                parseIntSafe(quantity5.getText()),
 
-        return invoice;
+                getFormattedDate()
+        );
+    }
+
+    private String getFormattedDate(){
+        LocalDate selectedDate = dateSelector.getValue();
+        if (selectedDate != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            return selectedDate.format(formatter);
+        }
+        return "";
     }
 
     private double parseDoubleSafe(String input) {
@@ -240,7 +248,7 @@ public class InvoiceFormController {
         return new Company(client, companyName, email, phone, state, city);
     }
 
-    public void clearValues() throws SQLException {
+    public void clearValues() throws Exception {
         description1.clear();
         description2.clear();
         description3.clear();
@@ -269,6 +277,8 @@ public class InvoiceFormController {
         stateBox.setValue("Gujarat");
         setCityValue("Gujarat");
         cityBox.setValue("Ahmedabad");
+
+        setCompanyField();
     }
 
 }
